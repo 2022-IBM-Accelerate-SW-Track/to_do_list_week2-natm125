@@ -27,6 +27,18 @@ class Home extends Component {
       todos: new_list,
     });
   };
+
+  //the deleteTodo allows for removing todo items from the list
+  deleteTodo = (id) => {
+    //remove the todo with the id from state
+    const todos = this.state.todos.filter((todo) => {
+      return todo.id !== id;
+    });
+    this.setState({
+      todos: todos,
+    });
+};
+
   render() {
     return (
       <div className="Home">
@@ -36,7 +48,7 @@ class Home extends Component {
         <AddTodo addTodo={this.addTodo} />
         {/* When returning the Todos component, todos is a prop passed to the todos.js file
          to format and render the current todo list state */}
-        <Todos todos={this.state.todos} />
+        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo}/>
       </div>
     );
   }
